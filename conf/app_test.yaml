@@ -1,0 +1,8 @@
+server:
+  name: grpc-datacollector
+  addr: 127.0.0.1
+  port: 1218
+
+es:
+  address: http://127.0.0.1:9200
+  index: grpc_tracing
