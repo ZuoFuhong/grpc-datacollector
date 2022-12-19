@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	"context"
@@ -19,7 +19,7 @@ func Test_Client(t *testing.T) {
 		TraceId:      "3ef9e9d0-12ff-7bbf-b205-5df5335aa511",
 		Cmd:          "ImportWallet",
 		Project:      "go_wallet_manage_svr",
-		Source:       "grpc_gateway_best_practices",
+		Source:       "grpc-gateway-sample",
 		ServerIp:     "127.0.0.1",
 		Errcode:      0,
 		Errmsg:       "",
