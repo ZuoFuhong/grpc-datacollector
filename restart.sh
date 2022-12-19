@@ -11,5 +11,5 @@ if [ -n "$PIDS" ]; then
     kill -9 $PIDS
 fi
 
-./$SERVER_NAME --conf conf/app_prod.yaml > info.log 2>&1 &
+./$SERVER_NAME server --conf conf/app_prod.yaml > info.log 2>&1 &
 echo "done"

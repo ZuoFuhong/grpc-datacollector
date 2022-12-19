@@ -14,11 +14,18 @@ import (
 	"net"
 )
 
-// RunServe 启动 Server
-func RunServe() {
+type Server struct {
+}
+
+func NewServer() *Server {
+	return &Server{}
+}
+
+// Serve 启动 Server
+func (s *Server) Serve() error {
 	cfg, err := config.LoadConfig()
 	if err != nil {
-		glog.Fatal("load config fail: " + err.Error())
+		return err
 	}
 	config.SetGlobalConfig(cfg)
 
@@ -30,20 +37,17 @@ func RunServe() {
 		IP:          cfg.Server.Addr,
 		Port:        cfg.Server.Port,
 	}).Register(); err != nil {
-		glog.Fatal(err)
+		return err
 	}
 
 	esDb := es.NewESDb()
 	serviceImpl := interfaces.InitializeService(esDb)
-	s := grpc.NewServer(grpc.UnaryInterceptor(gm.ChainUnaryServer(gr.UnaryServerInterceptor())))
-	pb.RegisterGoDatacollectorSvrServer(s, serviceImpl)
+	gs := grpc.NewServer(grpc.UnaryInterceptor(gm.ChainUnaryServer(gr.UnaryServerInterceptor())))
+	pb.RegisterGoDatacollectorSvrServer(gs, serviceImpl)
 	lis, err := net.Listen("tcp", fmt.Sprintf("%s:%d", cfg.Server.Addr, cfg.Server.Port))
 	if err != nil {
-		glog.Fatal(err)
+		return err
 	}
 	glog.Debugf("Serving %s on %s", cfg.Server.Name, lis.Addr().String())
-	err = s.Serve(lis)
-	if err != nil {
-		glog.Fatal(err)
-	}
+	return gs.Serve(lis)
 }

@@ -1,7 +1,6 @@
 package config
 
 import (
-	"flag"
 	"gopkg.in/yaml.v3"
 	"io/ioutil"
 	"sync/atomic"
@@ -15,10 +14,6 @@ const (
 
 // serverConfigPath 获取服务启动的配置文件
 func serverConfigPath() string {
-	if ServerConfigPath == defaultConfigPath {
-		flag.StringVar(&ServerConfigPath, "conf", defaultConfigPath, "server config path")
-		flag.Parse()
-	}
 	return ServerConfigPath
 }
 
