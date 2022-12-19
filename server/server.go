@@ -6,6 +6,7 @@ import (
 	"github.com/ZuoFuhong/grpc-datacollector/pkg/es"
 	glog "github.com/ZuoFuhong/grpc-datacollector/pkg/log"
 	"github.com/ZuoFuhong/grpc-datacollector/server/interfaces"
+	"github.com/ZuoFuhong/grpc-naming-monica/registry"
 	pb "github.com/ZuoFuhong/grpc-standard-pb/go_datacollector_svr"
 	gm "github.com/grpc-ecosystem/go-grpc-middleware"
 	gr "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
@@ -20,6 +21,17 @@ func RunServe() {
 		glog.Fatal("load config fail: " + err.Error())
 	}
 	config.SetGlobalConfig(cfg)
+
+	// 服务注册
+	if err := registry.NewRegistry(&registry.Config{
+		Token:       cfg.Monica.Token,
+		Namespace:   cfg.Monica.Namespace,
+		ServiceName: cfg.Monica.ServiceName,
+		IP:          cfg.Server.Addr,
+		Port:        cfg.Server.Port,
+	}).Register(); err != nil {
+		glog.Fatal(err)
+	}
 
 	esDb := es.NewESDb()
 	serviceImpl := interfaces.InitializeService(esDb)

@@ -29,6 +29,12 @@ type Config struct {
 		Port int    `yaml:"port"`
 	}
 
+	Monica struct {
+		Namespace   string `yaml:"namespace"`
+		ServiceName string `yaml:"service_name"`
+		Token       string `yaml:"token"`
+	}
+
 	Es struct {
 		Address string `yaml:"address"`
 		Index   string `yaml:"index"`

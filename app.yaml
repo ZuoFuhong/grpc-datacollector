@@ -3,6 +3,11 @@ server:
   addr: 127.0.0.1
   port: 1218
 
+monica:
+  namespace: Production
+  service_name: go_datacollector_svr
+  token: d1eb47f8-9480-427b-ad23-c344f16c3d53
+
 es:
   address: http://127.0.0.1:9200
   index: grpc_tracing

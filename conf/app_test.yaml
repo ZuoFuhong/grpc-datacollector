@@ -3,6 +3,11 @@ server:
   addr: 127.0.0.1
   port: 1218
 
+monica:
+  namespace: Test
+  service_name: go_datacollector_svr
+  token: 2bd469e8-b883-4377-8c66-9fa041723b6b
+
 es:
   address: http://127.0.0.1:9200
   index: grpc_tracing
