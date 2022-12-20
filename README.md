@@ -126,6 +126,6 @@ curl --location --request POST 'http://127.0.0.1:9200/grpc_tracing/_search' \
 }'
 ```
 
-## License
+### License
 
 This project is licensed under the [Apache 2.0 license](https://github.com/ZuoFuhong/grpc-datacollector/blob/master/LICENSE).
