@@ -3,7 +3,7 @@ module github.com/ZuoFuhong/grpc-datacollector
 go 1.18
 
 require (
-	github.com/ZuoFuhong/grpc-naming-monica v0.0.0-20221219070640-59bf47980d40
+	github.com/ZuoFuhong/grpc-naming-monica v0.0.0-20221220071204-a4360948b7cd
 	github.com/ZuoFuhong/grpc-standard-pb/go_datacollector_svr v0.0.0-20221218021427-15c88bffb756
 	github.com/agiledragon/gomonkey v2.0.2+incompatible
 	github.com/elastic/go-elasticsearch/v7 v7.17.7
